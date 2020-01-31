@@ -1,6 +1,6 @@
 {
   "name": "@conacyt/buscador-cvu",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "El componente de VueJS buscador de Personas Físicas por CVU",
   "keywords": [
     "vue",
@@ -21,7 +21,7 @@
     "serve": "vue-cli-service serve example/main.ts & npm run fake-api",
     "build": "bili",
     "lint": "vue-cli-service lint",
-    "fake-api": "json-server --watch db.json"
+    "fake-api": "json-server --delay 1000 --watch db.json"
   },
   "files": [
     "/dist",
@@ -70,6 +70,7 @@
     "sass-loader": "^7.1.0",
     "typescript": "^3.2.1",
     "vue": "^2.6.10",
+    "vue-i18n": "^8.6.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

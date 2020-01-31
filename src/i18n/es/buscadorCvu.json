@@ -1,0 +1,7 @@
+{
+    "buscadorCvu": {
+        "search": "Buscar",
+        "searching": "Buscando",
+        "notFound": "No se encontró a la persona con cvu {cvu}"
+    }
+}

@@ -12,6 +12,24 @@ var bAlert = _interopDefault(require('bootstrap-vue/es/components/alert/alert'))
 var vuePropertyDecorator = require('vue-property-decorator');
 var axios = _interopDefault(require('axios'));
 
+var buscadorCvu = {
+	search: "Search",
+	searching: "Searching",
+	notFound: "The person with cvu {cvu} was not found"
+};
+var i18nEn = {
+	buscadorCvu: buscadorCvu
+};
+
+var buscadorCvu$1 = {
+	search: "Buscar",
+	searching: "Buscando",
+	notFound: "No se encontró a la persona con cvu {cvu}"
+};
+var i18nEs = {
+	buscadorCvu: buscadorCvu$1
+};
+
 var CvuService =
 /** @class */
 function () {
@@ -93,13 +111,17 @@ function (_super) {
 
     _this.dismissCountDown = 0;
     _this.alertType = '';
-    _this.alertMessage = '';
+    _this.alertMessage = null;
     _this.searchKey = '';
     _this.searchedKey = ''; // Used to show alert message
 
     _this.isSearching = false;
     return _this;
   }
+
+  BuscadorCvu.prototype.created = function () {
+    this.initI18n();
+  };
 
   Object.defineProperty(BuscadorCvu.prototype, "options", {
     get: function get() {
@@ -127,7 +149,9 @@ function (_super) {
 
         _this.searchedKey = _this.searchKey + '';
         _this.alertType = 'warning';
-        _this.alertMessage = "No se encontr\xF3 a la persona con cvu \"" + _this.searchKey + "\"";
+        _this.alertMessage = _this.$t('buscadorCvu.notFound', {
+          cvu: _this.searchedKey
+        });
         _this.dismissCountDown = 5;
         _this.isSearching = false;
       });
@@ -136,6 +160,13 @@ function (_super) {
 
   BuscadorCvu.prototype.searchButtonDisabled = function () {
     return !this.searchKey || this.isSearching;
+  };
+
+  BuscadorCvu.prototype.initI18n = function () {
+    if (this.$i18n) {
+      this.$i18n.mergeLocaleMessage('es', i18nEs);
+      this.$i18n.mergeLocaleMessage('en', i18nEn);
+    }
   };
 
   tslib.__decorate([vuePropertyDecorator.Prop()], BuscadorCvu.prototype, "value", void 0);
@@ -160,9 +191,7 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', {
-    staticClass: "form-group mb-5"
-  }, [_c('b-alert', {
+  return _c('div', [_c('b-alert', {
     attrs: {
       "show": _vm.dismissCountDown,
       "dismissible": "",
@@ -179,13 +208,18 @@ var __vue_render__ = function __vue_render__() {
   }, [_vm._t("message", [_vm._v(_vm._s(_vm.alertMessage))], {
     "cvu": _vm.searchedKey
   })], 2), _vm._v(" "), _c('form', {
+    attrs: {
+      "role": "search"
+    },
     on: {
       "submit": function submit($event) {
         $event.preventDefault();
         return _vm.search();
       }
     }
-  }, [_c('input', {
+  }, [_c('div', {
+    staticClass: "form-group"
+  }), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model.trim",
@@ -232,7 +266,7 @@ var __vue_render__ = function __vue_render__() {
       "role": "status",
       "aria-hidden": "true"
     }
-  })], 1)])], 1);
+  }), _vm._v(" "), !_vm.isSearching ? _c('span', [_vm._v("\n         \n        " + _vm._s(_vm.$t("buscadorCvu.search")) + "\n      ")]) : _c('span', [_vm._v("\n         \n        " + _vm._s(_vm.$t("buscadorCvu.searching")) + "\n      ")])], 1)])], 1);
 };
 
 var __vue_staticRenderFns__ = [];

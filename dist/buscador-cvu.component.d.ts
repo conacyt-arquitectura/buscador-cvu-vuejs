@@ -10,11 +10,13 @@ export default class BuscadorCvu extends Vue {
     readonly value: IPersonaFisica;
     dismissCountDown: number;
     alertType: string;
-    alertMessage: string;
+    alertMessage: any;
     searchKey: string;
     searchedKey: string;
     isSearching: boolean;
+    created(): void;
     readonly options: Options;
     search(): void;
     searchButtonDisabled(): boolean;
+    private initI18n;
 }

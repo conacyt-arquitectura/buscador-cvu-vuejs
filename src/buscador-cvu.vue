@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group mb-5">
+  <div>
     <b-alert
       :show="dismissCountDown"
       dismissible
@@ -9,7 +9,8 @@
     >
       <slot name="message" v-bind:cvu="searchedKey">{{ alertMessage }}</slot>
     </b-alert>
-    <form v-on:submit.prevent="search()">
+    <form v-on:submit.prevent="search()" role="search">
+      <div class="form-group"></div>
       <input
         type="search"
         id="cvu-search"
@@ -33,6 +34,14 @@
           aria-hidden="true"
           v-else
         ></span>
+        <span v-if="!isSearching">
+          &nbsp;
+          {{ $t("buscadorCvu.search") }}
+        </span>
+        <span v-else>
+          &nbsp;
+          {{ $t("buscadorCvu.searching") }}
+        </span>
       </button>
     </form>
   </div>

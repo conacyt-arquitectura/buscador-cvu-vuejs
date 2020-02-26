@@ -62,3 +62,6 @@ typings/
 
 # rollup plugin typescript cache
 .rpt2_cache/
+
+# SonarQube Scanner Work
+.scannerwork/

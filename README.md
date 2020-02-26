@@ -1,3 +1,5 @@
+[![Build Status](https://cis.ccd.conacyt.mx/api/badges/componentes/buscador-cvu/status.svg)](https://cis.ccd.conacyt.mx/componentes/buscador-cvu)
+
 # Buscador de Personas Físicas por CVU
 El componente de VueJS buscador de Personas Físicas por CVU
 
